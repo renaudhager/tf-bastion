@@ -19,14 +19,8 @@ variable "vpc_rs_key"    {}
 #
 variable "instance_jump" { default = "t2.nano" }
 
-variable "azs" {
-  default = {
-    "eu-west-1"      = "a,b,c"
-    "eu-central-1"   = "a,b"
-    "us-east-1"      = "a,b,c"
-    "us-east-2"      = "a,b,c"
-    "us-west-1"      = "a,c"
-    "us-west-2"      = "b,c"
-    "ap-southeast-2" = "a,b,c"
-  }
-}
+#
+# Puppet stuff
+#
+variable "puppet_agent_version"      { default = "1.7.1" }
+variable "puppet_server_hostname"    { default = "puppetca-01" }
