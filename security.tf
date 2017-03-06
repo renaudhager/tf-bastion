@@ -16,6 +16,42 @@ resource "aws_security_group" "bastion" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Allow consul traffic
+  ingress {
+    from_port   = 8500
+    to_port     = 8500
+    protocol    = "tcp"
+    cidr_blocks = ["${data.terraform_remote_state.vpc_rs.vpc_cidr_block}"]
+  }
+
+  ingress {
+    from_port   = 8400
+    to_port     = 8400
+    protocol    = "tcp"
+    cidr_blocks = ["${data.terraform_remote_state.vpc_rs.vpc_cidr_block}"]
+  }
+
+  ingress {
+    from_port   = 8400
+    to_port     = 8400
+    protocol    = "tcp"
+    cidr_blocks = ["${data.terraform_remote_state.vpc_rs.vpc_cidr_block}"]
+  }
+
+  ingress {
+    from_port   = 8300
+    to_port     = 8305
+    protocol    = "tcp"
+    cidr_blocks = ["${data.terraform_remote_state.vpc_rs.vpc_cidr_block}"]
+  }
+
   # Allow ICMP traffic
   ingress {
     from_port   = -1
